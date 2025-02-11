@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Network Usage{% endblock %}
+
+{% block content %}
+    <h2>Real-Time Network Usage</h2>
+    <div>
+        <h3>Upload vs Download Speed</h3>
+        <div>
+            {{ graph_html|safe }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Packet Sniffing{% endblock %}
+
+{% block content %}
+    <h2>Packet Sniffing</h2>
+
+    <form method="POST">
+        <button type="submit">Start Sniffing</button>
+    </form>
+
+    <div class="message">
+        <h3>Captured Packets</h3>
+        <table>
+            <tr>
+                <th>Source IP</th>
+                <th>Destination IP</th>
+                <th>Protocol</th>
+                <th>Payload</th>
+            </tr>
+            {% for packet in packets %}
+            <tr>
+                <td>{{ packet.src_ip }}</td>
+                <td>{{ packet.dst_ip }}</td>
+                <td>{{ packet.proto }}</td>
+                <td>{{ packet.payload }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="message">
+        <h3>Protocol Distribution</h3>
+        <div>{{ protocol_graph_html|safe }}</div>
+    </div>
+{% endblock %}

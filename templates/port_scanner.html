@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Port Scanner{% endblock %}
+
+{% block content %}
+    <h2>Port Scanner</h2>
+
+    <form method="POST" class="form-group">
+        <label for="target_ip">Enter Target IP Address:</label>
+        <input type="text" id="target_ip" name="target_ip" required placeholder="e.g., 192.168.1.1">
+        <label for="ports">Enter Ports (e.g., 22,80,443):</label>
+        <input type="text" id="ports" name="ports" required placeholder="e.g., 22,80,443">
+        <button type="submit">Scan Ports</button>
+    </form>
+
+    {% if port_results %}
+        <h3>Port Scan Results</h3>
+        <table>
+            <tr>
+                <th>Port</th>
+                <th>Status</th>
+            </tr>
+            {% for result in port_results %}
+            <tr>
+                <td>{{ result.port }}</td>
+                <td>{{ result.state }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
